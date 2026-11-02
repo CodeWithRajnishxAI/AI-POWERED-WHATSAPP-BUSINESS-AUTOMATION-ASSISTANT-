@@ -1,0 +1,203 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -672,
+        -144
+      ],
+      "id": "24472e21-5f0f-4a98-87cb-cf5614859792",
+      "name": "When chat message received",
+      "webhookId": "0d2cb0dd-5021-4740-ab2d-0ca1562e1fb0"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -336,
+        -96
+      ],
+      "id": "b507a642-851a-40ce-991a-59e8c0a2b76f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -576,
+        128
+      ],
+      "id": "6582b5d6-f99d-4cf8-aff4-050bf6da595e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "agjMaKYjNOq98JA5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -384,
+        144
+      ],
+      "id": "273f094f-7538-429b-8cb7-c6c79a27a24c",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1yqomgu2EgyG8-EKq6buR_maqq8aMXDwtktw7kbF66pc",
+          "mode": "list",
+          "cachedResultName": "Food Delivery System",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yqomgu2EgyG8-EKq6buR_maqq8aMXDwtktw7kbF66pc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 541751037,
+          "mode": "list",
+          "cachedResultName": "FAQ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yqomgu2EgyG8-EKq6buR_maqq8aMXDwtktw7kbF66pc/edit#gid=541751037"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        96,
+        128
+      ],
+      "id": "d855cad4-8c67-45af-b182-be72228b9b9a",
+      "name": "Get row(s) in sheet in Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PWzzsjO04izbGHh7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1yqomgu2EgyG8-EKq6buR_maqq8aMXDwtktw7kbF66pc",
+          "mode": "list",
+          "cachedResultName": "Food Delivery System",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yqomgu2EgyG8-EKq6buR_maqq8aMXDwtktw7kbF66pc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 676783310,
+          "mode": "list",
+          "cachedResultName": "Orders",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yqomgu2EgyG8-EKq6buR_maqq8aMXDwtktw7kbF66pc/edit#gid=676783310"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -64,
+        128
+      ],
+      "id": "1a45225a-809f-4adc-88de-e7865ebbdf57",
+      "name": "Get row(s) in sheet in Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PWzzsjO04izbGHh7",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "95cd64dd-4fc5-41c4-ac1c-bb38c56d00cf",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f13ec935ce09d3d210cb3031737557d3add10674060a1bfd7efb4109eb93f5dd"
+  },
+  "id": "dbhDEDPix81lUlFL",
+  "tags": []
+}
